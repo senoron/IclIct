@@ -3,14 +3,20 @@
         <lightning-accordion>
             <template for:each={subjectsList} for:item="subject">
                 <div key={subject.key}>
-                    <lightning-accordion-section name="a" label={subject.key}>
+                    <lightning-accordion-section name={subject.key} label={subject.key}>
                         <lightning-accordion>
                             <template for:each={subject.topics} for:item="topic">
                                 <div key={topic.Id}>
-                                    <lightning-accordion-section name="a" label={topic.Title__c}>
+                                    <lightning-accordion-section name={topic.Title__c} label={topic.Title__c}>
                                         <template for:each={topic.Homeworks__r} for:item="homework">
                                             <template if:true={homework.IsControlWork__c}>
-                                                test
+                                                <div class="slds-grid slds-grid_vertical" key={homework.Id}>
+                                                    <template for:each={homework.tests} for:item="test">
+                                                        <div class="slds-col slds-m-left_medium" key={test.Id}>
+                                                            <button class="slds-button slds-button_neutral" value={test.Id} onclick={handleNavigateToTest}>{test.Name}</button>
+                                                        </div>
+                                                    </template>
+                                                </div>
                                             </template>
                                             <template if:false={homework.IsControlWork__c}>
                                                 file

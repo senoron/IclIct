@@ -10,6 +10,7 @@ import getSubjects from '@salesforce/apex/MyAssignmentsController.getSubjects';
 export default class MyAssignmentsWrapper extends LightningElement {
 
     @track subjects;
+    @track data;
     @track classRecordId;
 
     // @wire(getClass, {}) wiredClass({
@@ -25,7 +26,10 @@ export default class MyAssignmentsWrapper extends LightningElement {
         data,
         error
     }) {
-        this.subjects = data;
+        try {
+            this.data = data;
+            this.subjects = JSON.parse(JSON.stringify(data.data));
+        } catch (e) {console.log(e)}
     }
 
     get subjectsList() {
@@ -38,6 +42,13 @@ export default class MyAssignmentsWrapper extends LightningElement {
             for (let i = 0; i < keys.length; i++) {
 
                 const key = keys[i];
+
+                this.subjects[key].forEach(topic => {
+                    if (!topic.Homeworks__r) return;
+                    topic.Homeworks__r.forEach(homework => {
+                        homework.tests = this.data.tests[homework.Id];
+                    });
+                });
 
                 result.push({
                     key,
@@ -57,5 +68,11 @@ export default class MyAssignmentsWrapper extends LightningElement {
         getClass().then((result) => {
             this.classRecordId = result.Id;
         });
+    }
+
+    handleNavigateToTest(event) {
+        const testId = event.currentTarget.value;
+
+        open('/s/test?pageId=' + testId, '_blank');
     }
 }
