@@ -1,13 +1,19 @@
 <template>
     <lightning-tabset>
-        <lightning-tab label="Item One">
-            One Content !
-        </lightning-tab>
-        <lightning-tab label="Item Two" title="2nd tab extended title">
-            Two Content !
-        </lightning-tab>
-        <lightning-tab label="Item Three">
-            Three Content !
-        </lightning-tab>
+        <template for:each={subjects} for:item="subject">
+            <lightning-tab label={subject.Name} key={subject.id}>
+                <lightning-accordion class="example-accordion" allow-multiple-sections-open>
+                    <template for:each={subject.topics} for:item="topic">
+                        <lightning-accordion-section key={topic.Id} name={topic.Title__c} label={topic.Title__c}>
+                            <template for:each={topic.files} for:item="file">
+                                <div key={file.Id} class="slds-m-left_large">
+                                    <button class="slds-button slds-button_bare" value={file.Id} onclick={navigateToFiles}>{file.Title}</button>
+                                </div>
+                            </template>
+                        </lightning-accordion-section>
+                    </template>
+                </lightning-accordion>
+            </lightning-tab>
+        </template>
     </lightning-tabset>
 </template>
