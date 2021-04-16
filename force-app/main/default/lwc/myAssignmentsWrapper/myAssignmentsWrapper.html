@@ -19,7 +19,13 @@
                                                 </div>
                                             </template>
                                             <template if:false={homework.IsControlWork__c}>
-                                                file
+                                                <div class="slds-grid slds-grid_vertical" key={homework.Id}>
+                                                    <template for:each={homework.files} for:item="file">
+                                                        <div class="slds-col slds-m-left_medium" key={file}>
+                                                            <button class="slds-button slds-button_neutral" value={file} onclick={openFile}>{file}</button>
+                                                        </div>
+                                                    </template>
+                                                </div>
                                             </template>
                                         </template>
                                     </lightning-accordion-section>

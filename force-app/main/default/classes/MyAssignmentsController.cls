@@ -45,8 +45,10 @@ public without sharing class MyAssignmentsController {
                 }
             }
 
+            List<ContentDocumentLink> links = [SELECT LinkedEntityId, ContentDocumentId FROM ContentDocumentLink WHERE LinkedEntityId IN: homeworksId];
             List<Test__c> tests = [SELECT Id, Name, Homework__c FROM Test__c WHERE Homework__c IN: homeworksId];
             Map<String, List<Test__c>> testsByHomeworkId = new Map<String, List<Test__c>>();
+            Map<String, List<String>> documentIdByHomeworkId = new Map<String, List<String>>();
 
             for (Test__c test : tests) {
 
@@ -55,6 +57,14 @@ public without sharing class MyAssignmentsController {
                 }
 
                 testsByHomeworkId.get(test.Homework__c).add(test);
+            }
+
+            for (ContentDocumentLink link : links) {
+                if (!documentIdByHomeworkId.containsKey(link.LinkedEntityId)) {
+                    documentIdByHomeworkId.put(link.LinkedEntityId, new List<String>());
+                }
+
+                documentIdByHomeworkId.get(link.LinkedEntityId).add(link.ContentDocumentId);
             }
             
             Map<String, Object> finalResultMap = new Map<String, Object>();
@@ -72,8 +82,15 @@ public without sharing class MyAssignmentsController {
 
             finalResultMap.put('data', resultMap);
             finalResultMap.put('tests', testsByHomeworkId);
+            finalResultMap.put('files', documentIdByHomeworkId);
 
             return finalResultMap;
        
+    }
+
+    @AuraEnabled
+    public static String getFileUrl(String documentId){
+        ContentDistribution ds = [SELECT Id, DistributionPublicUrl FROM ContentDistribution WHERE ContentDocumentId = :documentId];
+        return ds.DistributionPublicUrl;
     }
 }

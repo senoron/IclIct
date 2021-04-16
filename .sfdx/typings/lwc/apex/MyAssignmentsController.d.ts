@@ -4,3 +4,6 @@ declare module "@salesforce/apex/MyAssignmentsController.getClass" {
 declare module "@salesforce/apex/MyAssignmentsController.getSubjects" {
   export default function getSubjects(param: {classId: any}): Promise<any>;
 }
+declare module "@salesforce/apex/MyAssignmentsController.getFileUrl" {
+  export default function getFileUrl(param: {documentId: any}): Promise<any>;
+}
