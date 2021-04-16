@@ -10,23 +10,23 @@ import isTeacher from '@salesforce/apex/HeaderController.isTeacher';
 
 export default class CommunityHeader extends LightningElement {
 
-    isTeacher = false;
-
     @wire(isTeacher)
     wiredTeacher({
         data,
         error
     }) {
         if (data) {
-            this.isTeacher = data;
+            this.logo = LOGO_VAR2;
         }
     }
 
-    get logo() {
-        try {
-            this.isTeacher ? LOGO_VAR1 : LOGO_VAR2;
-        } catch (e) {}
-    }
+    // get logo() {
+    //     try {
+    //         this.isTeacher ? LOGO_VAR1 : LOGO_VAR2;
+    //     } catch (e) {}
+    // }
+
+    logo = LOGO_VAR1;
 
     logout() {
         open('/secur/logout.jsp', '_self');
