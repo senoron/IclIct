@@ -1,0 +1,16 @@
+<template>
+    <template for:each={tasks} for:item="task">
+        <div key={task.Id}>
+            <lightning-radio-group 
+                name={task.Id}
+                data-id={task.Id}
+                label={task.Question__c}
+                type="radio"
+                class="slds-p-top_medium">
+            </lightning-radio-group>
+        </div>
+    </template>
+    <div class="slds-m-top_medium">
+        <button class="slds-button slds-button_success" onclick={finishTest}>Finish</button>
+    </div>
+</template>
