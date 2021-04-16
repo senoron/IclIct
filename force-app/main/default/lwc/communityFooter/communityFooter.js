@@ -1,3 +1,9 @@
 import { LightningElement } from 'lwc';
 
-export default class CommunityFooter extends LightningElement {}
+import FOOTER_LOGO from '@salesforce/resourceUrl/logo_var3';
+
+export default class CommunityFooter extends LightningElement {
+    
+    logo = FOOTER_LOGO;
+
+}
