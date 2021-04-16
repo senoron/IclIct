@@ -1,0 +1,229 @@
+<apex:page id="Registration" lightningStyleSheets="true" showHeader="false" controller="RegisterController"
+    title="{!$Label.site.register}" language="en">
+
+    <head>
+        <apex:slds/>
+
+        <style type="text/css">
+            .lightning-input_input {
+                border-radius: 50px;
+            }
+
+            input:active:focus,
+            input:focus {
+                outline: 0 !important;
+                outline-offset: 0 !important;
+                background-image: none !important;
+            }
+
+
+            input:active:focus,
+            input:focus,
+            button:active:focus,
+            button:focus {
+                outline: 0 !important;
+                outline-offset: 0 !important;
+                background-image: none !important;
+                border-color: #985bf4!important;
+                box-shadow: 0 0 3px #985bf4!important;
+            }
+
+            input,
+            button {
+                border-radius: 50px!important;
+                font-family: "Sharp Sans Display No1", sans-serif;
+                padding: 0.5rem 0.5rem 0.5rem 1rem!important;
+            }
+
+            #Registration\:theForm#submit {
+                background-color: #985bf4;
+                border: solid 1px #985bf4!important;
+                transition: .2s;
+                font-weight: 700;
+                font-size: 16px;
+
+                font-family: "Sharp Sans Display No1", sans-serif;
+            }
+
+            #Registration\:theForm#submit:hover,
+            #Registration\:theForm#submit:focus {
+                background-color: white;
+                border: solid 1px #985bf4!important;
+                color: #985bf4;
+                outline: 0 !important;
+                outline-offset: 0 !important;
+                background-image: none !important;
+            }
+
+            .form {
+                width: 20%;
+            }
+
+            .logo {
+                box-shadow: 0 0 5px black;
+            }
+
+            @font-face {
+                font-family: "Sharp Sans Display No1";
+                src: url("/s/sfsites/c/resource/Fonts/SharpSansDisplayNo1-Bold.woff2") format("woff2"),
+                url("/s/sfsites/c/resource/Fonts/SharpSansDisplayNo1-Bold.woff") format("woff");
+                font-weight: bold;
+                font-style: normal;
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- {!ip}
+        {!data} -->
+        {!e}
+        <script>
+
+            const checkIfError = () => {
+                console.error(`{!e}`);
+                if (`{!e}`.includes('DUPLICATE_USERNAME')) {
+                    const emailInput = document.querySelector("#Registration\\:theForm\\:email")
+                    emailInput.setCustomValidity('User with that email already registered');
+                    emailInput.reportValidity();
+                }
+            }
+
+            setTimeout(checkIfError, 0);
+
+            const validateEmpty = (input) => {
+                if (!input.value) {
+                    this.isFormValid = false;
+                    input.setCustomValidity('This field should not be empty');
+                } else {
+                    input.setCustomValidity('');
+                }
+            }
+
+            const validateLength = (input, minLenght) => {
+                if (input.value.length < minLenght) {
+                    this.isFormValid = false;
+                    input.setCustomValidity('Your password must be at least ' + minLenght + ' characters long.');
+                }
+            }
+
+            const validateEmail = (input) => {
+
+                validateEmpty(input);
+
+                let re = /^[^\s@]+@[^\s@]+$/;
+                let emailValid = re.test(input.value);
+
+                if (!emailValid) {
+                    this.isFormValid = false;
+                    input.setCustomValidity('Email is invalid');
+                } else {
+                    input.setCustomValidity('');
+                }
+
+            }
+
+            const validatePassword = (input1, input2) => {
+
+                validateEmpty(input1);
+                validateLength(input1, 5);
+
+                if (!this.isFormValid) return;
+
+                if (input1.value != input2.value) {
+                    this.isFormValid = false;
+                    input2.setCustomValidity('Passwords dont\'t match');
+                } else {
+                    input2.setCustomValidity('');
+                }
+            }
+
+            const validateSubmit = () => {
+                const inputs = Array.prototype.slice.call(document.querySelectorAll("#Registration\\:theForm input"));
+                inputs.shift();
+
+                this.isFormValid = true;
+
+                validatePassword(document.querySelector("#Registration\\:theForm\\:password"),
+                    document.querySelector("#Registration\\:theForm\\:confirmPassword"));
+
+                validateEmail(document.querySelector("#Registration\\:theForm\\:email"));
+
+                validateEmpty(document.querySelector("#Registration\\:theForm\\:Firstname"));
+                validateEmpty(document.querySelector("#Registration\\:theForm\\:Lastname"));
+                validateEmpty(document.querySelector("#Registration\\:theForm\\:key"));
+
+                inputs.reverse().forEach(element => {
+                    element.reportValidity();
+                });
+
+                if (this.isFormValid) {
+                    registerUser();
+                }
+
+            }
+
+        </script>
+
+
+
+        <div class="slds-grid slds-grid_align-center slds-grid_vertical-align-center" style="height: 100vh;">
+            <apex:form styleClass="slds-col slds-box form" id="theForm" forceSSL="true">
+                <apex:actionFunction action="{!registerUser}" name="registerUser" />
+
+                <div class="slds-grid slds-grid_align-center slds-grid_vertical-align-center">
+                    <div class="slds-col">
+                        <apex:image url="{!URLFOR($Resource.logo_var1)}" styleClass="logo"/>
+                    </div>
+                </div>
+
+                <div class="slds-grid_vertical slds-gutters">
+
+                    <div class="slds-col slds-m-top_small">
+                        <!-- <apex:outputLabel value="{!$Label.Self_Reg_First_name}" for="Firstname" /> -->
+                        <apex:inputText styleClass="slds-input" required="true" id="Firstname" html-placeholder="Firstname" value="{!Firstname}"
+                        />
+                    </div>
+
+
+                    <div class="slds-col slds-m-top_small">
+                        <!-- <apex:outputLabel value="{!$Label.Self_Reg_Last_name}" for="Lastname" /> -->
+                        <apex:inputText styleClass="slds-input" required="true" id="Lastname" html-placeholder="Lastname" value="{!Lastname}" />
+                    </div>
+
+                    <div class="slds-col slds-m-top_small">
+                        <!-- <apex:outputLabel value="{!$Label.site.email}" for="email" /> -->
+                        <apex:inputText styleClass="slds-input" required="true" id="email" html-placeholder="{!$Label.site.email}" value="{!email}"
+                        />
+                    </div>
+
+                    <div class="slds-col slds-m-top_small">
+                        <!-- <apex:outputLabel value="{!$Label.site.email}" for="email" /> -->
+                        <apex:inputText styleClass="slds-input" required="true" id="key" html-placeholder="Key" value="{!key}"
+                        />
+                    </div>
+
+                    <div class="slds-col slds-m-top_small">
+                        <!-- <apex:outputLabel value="{!$Label.site.password}" for="password" /> -->
+                        <apex:inputSecret styleClass="slds-input" id="password" html-placeholder="{!$Label.site.password}" value="{!password}" />
+                    </div>
+
+                    <div class="slds-col slds-m-top_small">
+                        <!-- <apex:outputLabel value="{!$Label.site.confirm_password}" for="confirmPassword" /> -->
+                        <apex:inputSecret styleClass="slds-input" id="confirmPassword" html-placeholder="{!$Label.site.confirm_password}" value="{!confirmPassword}"
+                        />
+                    </div>
+
+                    <div class="slds-col slds-m-top_small">
+                        <apex:outputText value="" />
+                        <apex:commandButton styleClass="slds-button slds-button_brand slds-button_stretch slds-hide" action="{!registerUser}" value=""
+                            id="submitApex" />
+                        <button id="submit" class="slds-button slds-button_brand slds-button_stretch" onclick="validateSubmit();">Sign Up</button>
+                    </div>
+
+                </div>
+
+            </apex:form>
+        </div>
+    </body>
+
+</apex:page>
