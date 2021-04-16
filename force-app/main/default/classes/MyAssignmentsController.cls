@@ -16,10 +16,9 @@ public without sharing class MyAssignmentsController {
         }
     }
 
-    @AuraEnabled
+    @AuraEnabled(Cacheable=true)
     public static Map<String, List<Topic__c>> getSubjects(String classId){
-        try {
-            List<ClassSubject__c> classSubjects = [SELECT Id, Name, Subject__c FROM ClassSubject__c WHERE Id =: classId];
+            List<ClassSubject__c> classSubjects = [SELECT Id, Name, Subject__c FROM ClassSubject__c WHERE Class__c =: classId];
 
             Set<Id> subjectsId = new Set<Id>();
             for (ClassSubject__c classSubject : classSubjects) {
@@ -36,7 +35,7 @@ public without sharing class MyAssignmentsController {
                 }
             }
 
-            List<Topic__c> topics = [SELECT Id, Name, Subject__r.Name, (SELECT Id, Name FROM Homeworks__r) FROM Topic__c WHERE Id IN: topicsId];
+            List<Topic__c> topics = [SELECT Id, Name, Subject__r.Name, Title__c, (SELECT Id, Name, IsControlWork__c FROM Homeworks__r) FROM Topic__c WHERE Id IN: topicsId];
             Map<String, List<Topic__c>> resultMap = new Map<String, List<Topic__c>>();
 
             for (Topic__c top : topics) {
@@ -50,8 +49,6 @@ public without sharing class MyAssignmentsController {
 
 
             return resultMap;
-        } catch (Exception e) {
-            throw new AuraHandledException(e.getMessage());
-        }
+       
     }
 }

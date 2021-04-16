@@ -1,5 +1,29 @@
 <template>
     <div class="slds-grid">
-        
+        <lightning-accordion>
+            <template for:each={subjectsList} for:item="subject">
+                <div key={subject.key}>
+                    <lightning-accordion-section name="a" label={subject.key}>
+                        <lightning-accordion>
+                            <template for:each={subject.topics} for:item="topic">
+                                <div key={topic.Id}>
+                                    <lightning-accordion-section name="a" label={topic.Title__c}>
+                                        <template for:each={topic.Homeworks__r} for:item="homework">
+                                            <template if:true={homework.IsControlWork__c}>
+                                                test
+                                            </template>
+                                            <template if:false={homework.IsControlWork__c}>
+                                                file
+                                            </template>
+                                        </template>
+                                    </lightning-accordion-section>
+                                </div>
+                            </template>
+                        </lightning-accordion>
+
+                    </lightning-accordion-section>
+                </div>
+            </template>
+        </lightning-accordion>
     </div>
 </template>
