@@ -1,0 +1,57 @@
+{
+  "status": 0,
+  "result": [
+    {
+      "createdById": "00509000005eUVxAAM",
+      "createdByName": "Yurii Lytvyn",
+      "createdDate": "2021-04-16T16:49:20.000Z",
+      "fileName": "staticresources/logo_var1.resource",
+      "fullName": "logo_var1",
+      "id": "08109000001ZPWcAAO",
+      "lastModifiedById": "00509000005eUVxAAM",
+      "lastModifiedByName": "Yurii Lytvyn",
+      "lastModifiedDate": "2021-04-16T16:49:20.000Z",
+      "manageableState": "unmanaged",
+      "type": "StaticResource"
+    },
+    {
+      "createdById": "00509000005eUVxAAM",
+      "createdByName": "Yurii Lytvyn",
+      "createdDate": "2021-04-16T16:50:32.000Z",
+      "fileName": "staticresources/logo_var3.resource",
+      "fullName": "logo_var3",
+      "id": "08109000001ZPWmAAO",
+      "lastModifiedById": "00509000005eUVxAAM",
+      "lastModifiedByName": "Yurii Lytvyn",
+      "lastModifiedDate": "2021-04-16T16:50:32.000Z",
+      "manageableState": "unmanaged",
+      "type": "StaticResource"
+    },
+    {
+      "createdById": "00509000005eUVxAAM",
+      "createdByName": "Yurii Lytvyn",
+      "createdDate": "2021-04-16T16:49:54.000Z",
+      "fileName": "staticresources/logo_var2.resource",
+      "fullName": "logo_var2",
+      "id": "08109000001ZPWhAAO",
+      "lastModifiedById": "00509000005eUVxAAM",
+      "lastModifiedByName": "Yurii Lytvyn",
+      "lastModifiedDate": "2021-04-16T16:49:54.000Z",
+      "manageableState": "unmanaged",
+      "type": "StaticResource"
+    },
+    {
+      "createdById": "00509000005eUVxAAM",
+      "createdByName": "Yurii Lytvyn",
+      "createdDate": "2021-04-16T15:26:25.000Z",
+      "fileName": "staticresources/SiteSamples.resource",
+      "fullName": "SiteSamples",
+      "id": "08109000001ZPGoAAO",
+      "lastModifiedById": "00509000005eUVxAAM",
+      "lastModifiedByName": "Yurii Lytvyn",
+      "lastModifiedDate": "2021-04-16T15:26:25.000Z",
+      "manageableState": "unmanaged",
+      "type": "StaticResource"
+    }
+  ]
+}
