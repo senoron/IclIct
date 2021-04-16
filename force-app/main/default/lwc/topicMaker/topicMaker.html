@@ -1,0 +1,39 @@
+<template>
+    <div class="slds-grid slds-gutters slds-m-top-meduim">
+        <div class="slds-col slds-size_4-of-12">
+            <div class="slds-box">
+                <lightning-combobox
+                    name="classes" 
+                    class="classesCombo" 
+                    label="Choose a class" 
+                    value={classValue}
+                    placeholder="Select Topic" 
+                    onchange={classChange} 
+                    required>
+                </lightning-combobox>
+                <lightning-combobox
+                    name="subjects" 
+                    class="subjectsCombo" 
+                    label="Choose a subjects" 
+                    value={subjectsValue}
+                    placeholder="Select Topic" 
+                    onchange={subjectsChange}
+                    disabled={isSubjectDisabled}
+                    required>
+                </lightning-combobox>
+            </div>
+        </div>
+        <div class="slds-col slds-size_8-of-12">
+            <div class="slds-box">
+                <div class="slds-grid">
+                    <div class="slds-col slds-size_10-of-12">
+                        <lightning-input class="topicInput" type="text" variant="label-hidden" onchange={changeTopicTitle}></lightning-input>
+                    </div>
+                    <div class="slds-col slds-size_2-of-12">
+                        <button class="slds-button slds-button_brand" onclick={addNewTopic}>Add topic</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
