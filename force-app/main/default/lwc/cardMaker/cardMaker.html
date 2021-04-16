@@ -1,0 +1,63 @@
+<template>
+    <div class="slds-grid slds-gutters slds-m-top_medium">
+        <div class="slds-col slds-size_1-of-2">
+            <div class="slds-box">
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col slds-size_10-of-12">
+                        <lightning-input  class="newCardInput" type="text" label="Enter train name" placeholder="Enter train name" variant="label-hidden" onchange={updateName}></lightning-input>
+                    </div>
+                    <div class="slds-col slds-size_2-of-12">
+                        <button class="slds-button slds-button_brand" onclick={createCardSet}>Add new</button>
+                    </div>
+                </div>
+                <lightning-combobox
+                    name="sets" 
+                    class="setsCombo" 
+                    label="" 
+                    value={setsValue}
+                    placeholder="Select a train" 
+                    onchange={setsChange}
+                    required>
+                </lightning-combobox>
+                <div class="slds-m-top_xx-large">
+                    <lightning-record-edit-form object-api-name="Card__c">
+                        <lightning-input-field field-name="Question__c">
+                        </lightning-input-field>
+                        <lightning-input-field field-name="Answer__c">
+                        </lightning-input-field>
+                        <lightning-input-field field-name="CardSet__c" class="slds-hidden">
+                        </lightning-input-field>
+                    </lightning-record-edit-form>
+                    <button class="slds-button slds-button_success slds-align_absolute-center slds-size-4-of-12" onclick={addNewCard}>Add new card</button>
+                </div>
+            </div>
+        </div>
+        <div class="slds-col slds-size_1-of-2">
+            <div class="slds-box">
+                <lightning-accordion class="example-accordion" allow-multiple-sections-open>
+                    <template for:each={sets} for:item="set">
+                        <div class="slds-grid" key={set.Id}>
+                            <div class="slds-col">
+                                <lightning-accordion-section key={set.Id} name={set.Name} label={set.Name}>
+                                    <template for:each={set.cards} for:item="card">
+                                        <div key={card.Id} class="slds-grid slds-size_1-of-1">
+                                            <div class="slds-col">
+                                                <div>{card.Question__c} - {card.Answer__c}</div>
+                                            </div>
+                                            <div class="">
+                                                <lightning-button-icon icon-name="utility:close" variant="bare" value={card.Id} onclick={deleteCard}></lightning-button-icon>
+                                            </div>
+                                        </div>
+                                    </template>
+                                </lightning-accordion-section>
+                            </div>
+                            <div class="" align="right">
+                                <lightning-button-icon icon-name="utility:delete" value={set.Id} variant="bare" onclick={deleteSet}></lightning-button-icon>
+                            </div>
+                        </div>
+                    </template>
+                </lightning-accordion>
+            </div>
+        </div>
+    </div>
+</template>
