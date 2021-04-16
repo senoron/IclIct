@@ -31,6 +31,7 @@ global class Report {
     global List<CombinedAttachment> CombinedAttachments;
     global List<ContentDocumentLink> ContentDocumentLinks;
     global List<EntitySubscription> FeedSubscriptionsForEntity;
+    global List<NetworkActivityAudit> ParentEntities;
     global List<ReportFeed> Feeds;
     global List<ContentVersion> FirstPublishLocation;
     global List<DashboardComponent> CustomReport;

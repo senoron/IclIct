@@ -58,6 +58,8 @@ global class Task {
     global List<CombinedAttachment> CombinedAttachments;
     global List<ContentDocumentLink> ContentDocumentLinks;
     global List<EntitySubscription> FeedSubscriptionsForEntity;
+    global List<NetworkActivityAudit> ParentEntities;
+    global List<NetworkUserHistoryRecent> NetworkUserHistoryRecentToRecord;
     global List<Task> RecurringTasks;
     global List<TaskFeed> Feeds;
     global List<TopicAssignment> TopicAssignments;

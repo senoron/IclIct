@@ -654,6 +654,14 @@ declare module "@salesforce/schema/User.Extension" {
   const Extension:string;
   export default Extension;
 }
+declare module "@salesforce/schema/User.PortalRole" {
+  const PortalRole:string;
+  export default PortalRole;
+}
+declare module "@salesforce/schema/User.IsPortalEnabled" {
+  const IsPortalEnabled:boolean;
+  export default IsPortalEnabled;
+}
 declare module "@salesforce/schema/User.FederationIdentifier" {
   const FederationIdentifier:string;
   export default FederationIdentifier;
@@ -725,4 +733,8 @@ declare module "@salesforce/schema/User.Individual" {
 declare module "@salesforce/schema/User.IndividualId" {
   const IndividualId:any;
   export default IndividualId;
+}
+declare module "@salesforce/schema/User.IsTeacher__c" {
+  const IsTeacher__c:boolean;
+  export default IsTeacher__c;
 }

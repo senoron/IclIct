@@ -40,6 +40,8 @@ global class Product2 {
     global List<EmailMessage> Emails;
     global List<EntitySubscription> FeedSubscriptionsForEntity;
     global List<Event> Events;
+    global List<NetworkActivityAudit> ParentEntities;
+    global List<NetworkUserHistoryRecent> NetworkUserHistoryRecentToRecord;
     global List<Note> Notes;
     global List<NoteAndAttachment> NotesAndAttachments;
     global List<OpenActivity> OpenActivities;
@@ -48,12 +50,7 @@ global class Product2 {
     global List<ProcessInstanceHistory> ProcessSteps;
     global List<Product2Feed> Feeds;
     global List<Product2History> Histories;
-    global List<ProductConsumed> ProductsConsumed;
     global List<ProductConsumptionSchedule> ProductConsumptionSchedules;
-    global List<ProductItem> ProductItems;
-    global List<ProductRequestLineItem> ProductRequestLineItems;
-    global List<ProductRequired> ProductsRequired;
-    global List<ProductTransfer> ProductTransfers;
     global List<RecordAction> RecordActions;
     global List<RecordActionHistory> RecordActionHistories;
     global List<ReturnOrderLineItem> ReturnOrderLineItems;

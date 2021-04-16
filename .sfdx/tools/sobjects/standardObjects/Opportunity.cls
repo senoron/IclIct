@@ -51,6 +51,11 @@ global class Opportunity {
     global Datetime LastReferencedDate;
     global Boolean HasOpenActivity;
     global Boolean HasOverdueTask;
+    global String DeliveryInstallationStatus__c;
+    global String TrackingNumber__c;
+    global String OrderNumber__c;
+    global String CurrentGenerators__c;
+    global String MainCompetitors__c;
     global List<AccountPartner> AccountPartners;
     global List<ActivityHistory> ActivityHistories;
     global List<AttachedContentDocument> AttachedContentDocuments;
@@ -62,6 +67,7 @@ global class Opportunity {
     global List<EmailMessage> Emails;
     global List<EntitySubscription> FeedSubscriptionsForEntity;
     global List<Event> Events;
+    global List<NetworkActivityAudit> ParentEntities;
     global List<Note> Notes;
     global List<NoteAndAttachment> NotesAndAttachments;
     global List<OpenActivity> OpenActivities;

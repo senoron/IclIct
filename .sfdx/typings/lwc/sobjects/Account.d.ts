@@ -206,6 +206,22 @@ declare module "@salesforce/schema/Account.LastReferencedDate" {
   const LastReferencedDate:any;
   export default LastReferencedDate;
 }
+declare module "@salesforce/schema/Account.IsPartner" {
+  const IsPartner:boolean;
+  export default IsPartner;
+}
+declare module "@salesforce/schema/Account.IsCustomerPortal" {
+  const IsCustomerPortal:boolean;
+  export default IsCustomerPortal;
+}
+declare module "@salesforce/schema/Account.ChannelProgramName" {
+  const ChannelProgramName:string;
+  export default ChannelProgramName;
+}
+declare module "@salesforce/schema/Account.ChannelProgramLevelName" {
+  const ChannelProgramLevelName:string;
+  export default ChannelProgramLevelName;
+}
 declare module "@salesforce/schema/Account.Jigsaw" {
   const Jigsaw:string;
   export default Jigsaw;
@@ -261,4 +277,32 @@ declare module "@salesforce/schema/Account.OperatingHours" {
 declare module "@salesforce/schema/Account.OperatingHoursId" {
   const OperatingHoursId:any;
   export default OperatingHoursId;
+}
+declare module "@salesforce/schema/Account.CustomerPriority__c" {
+  const CustomerPriority__c:string;
+  export default CustomerPriority__c;
+}
+declare module "@salesforce/schema/Account.SLA__c" {
+  const SLA__c:string;
+  export default SLA__c;
+}
+declare module "@salesforce/schema/Account.Active__c" {
+  const Active__c:string;
+  export default Active__c;
+}
+declare module "@salesforce/schema/Account.NumberofLocations__c" {
+  const NumberofLocations__c:number;
+  export default NumberofLocations__c;
+}
+declare module "@salesforce/schema/Account.UpsellOpportunity__c" {
+  const UpsellOpportunity__c:string;
+  export default UpsellOpportunity__c;
+}
+declare module "@salesforce/schema/Account.SLASerialNumber__c" {
+  const SLASerialNumber__c:string;
+  export default SLASerialNumber__c;
+}
+declare module "@salesforce/schema/Account.SLAExpirationDate__c" {
+  const SLAExpirationDate__c:any;
+  export default SLAExpirationDate__c;
 }

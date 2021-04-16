@@ -70,6 +70,11 @@ global class Lead {
     global Datetime EmailBouncedDate;
     global Individual Individual;
     global Id IndividualId;
+    global String SICCode__c;
+    global String ProductInterest__c;
+    global String Primary__c;
+    global String CurrentGenerators__c;
+    global Double NumberofLocations__c;
     global List<AcceptedEventRelation> AcceptedEventRelations;
     global List<ActivityHistory> ActivityHistories;
     global List<AttachedContentDocument> AttachedContentDocuments;
@@ -91,6 +96,7 @@ global class Lead {
     global List<LeadHistory> Histories;
     global List<LeadShare> Shares;
     global List<ListEmailIndividualRecipient> ListEmailIndividualRecipients;
+    global List<NetworkActivityAudit> ParentEntities;
     global List<Note> Notes;
     global List<NoteAndAttachment> NotesAndAttachments;
     global List<OpenActivity> OpenActivities;

@@ -59,6 +59,10 @@ global class Account {
     global Date LastActivityDate;
     global Datetime LastViewedDate;
     global Datetime LastReferencedDate;
+    global Boolean IsPartner;
+    global Boolean IsCustomerPortal;
+    global String ChannelProgramName;
+    global String ChannelProgramLevelName;
     global String Jigsaw;
     global String JigsawCompanyId;
     global String CleanStatus;
@@ -73,7 +77,15 @@ global class Account {
     global Id DandbCompanyId;
     global OperatingHours OperatingHours;
     global Id OperatingHoursId;
+    global String CustomerPriority__c;
+    global String SLA__c;
+    global String Active__c;
+    global Double NumberofLocations__c;
+    global String UpsellOpportunity__c;
+    global String SLASerialNumber__c;
+    global Date SLAExpirationDate__c;
     global List<Account> ChildAccounts;
+    global List<AccountBrand> AccountBrands;
     global List<AccountCleanInfo> AccountCleanInfos;
     global List<AccountContactRole> AccountContactRoles;
     global List<AccountFeed> Feeds;
@@ -89,6 +101,7 @@ global class Account {
     global List<AttachedContentDocument> AttachedContentDocuments;
     global List<Attachment> Attachments;
     global List<Case> Cases;
+    global List<ChannelProgramMember> ChannelProgramMembers;
     global List<CollaborationGroupRecord> RecordAssociatedGroups;
     global List<CombinedAttachment> CombinedAttachments;
     global List<Contact> Contacts;
@@ -102,7 +115,7 @@ global class Account {
     global List<Entitlement> Entitlements;
     global List<EntitySubscription> FeedSubscriptionsForEntity;
     global List<Event> Events;
-    global List<MaintenancePlan> MaintenancePlans;
+    global List<NetworkActivityAudit> ParentEntities;
     global List<Note> Notes;
     global List<NoteAndAttachment> NotesAndAttachments;
     global List<OpenActivity> OpenActivities;
@@ -111,10 +124,12 @@ global class Account {
     global List<Order> Orders;
     global List<Partner> PartnersFrom;
     global List<Partner> PartnersTo;
+    global List<PartnerFundAllocation> PartnerFundAllocations;
+    global List<PartnerFundClaim> PartnerFundClaims;
+    global List<PartnerFundRequest> PartnerFundRequests;
+    global List<PartnerMarketingBudget> PartnerMarketingBudgets;
     global List<ProcessInstance> ProcessInstances;
     global List<ProcessInstanceHistory> ProcessSteps;
-    global List<ProductRequest> ProductRequests;
-    global List<ProductRequestLineItem> ProductRequestLineItems;
     global List<RecordAction> RecordActions;
     global List<RecordActionHistory> RecordActionHistories;
     global List<ResourcePreference> ResourcePreferences;
@@ -141,7 +156,8 @@ global class Account {
     global List<FeedComment> Parent;
     global List<FlowRecordRelation> RelatedRecord;
     global List<Lead> ConvertedAccount;
-    global List<OpportunityChangeEvent> Account;
+    global List<MessagingSession> EndUserAccount;
+    global List<NetworkSelfRegistration> Account;
     global List<OutgoingEmail> RelatedTo;
     global List<ServiceContractChangeEvent> Account;
     global List<TaskChangeEvent> What;
