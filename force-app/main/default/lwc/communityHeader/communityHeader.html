@@ -1,3 +1,16 @@
 <template>
-    
+    <div
+        class="slds-grid slds-p-vertical_medium slds-m-horizontal_large slds-gutters_x-small slds-grid_vertical-align-center">
+        <div class="slds-col">
+            <img data-id="logo" style="box-shadow: 0px 0px 5px black; max-height: 90px;" />
+        </div>
+        <div class="slds-col" style="flex-grow: 100000;"></div>
+        <div class="slds-col">
+            <lightning-button-icon size="large" variant="bare" class="btn" icon-name="utility:global_constant">
+            </lightning-button-icon>
+        </div>
+        <div class="slds-col">
+            <lightning-button label="Logout" class="btn" onclick={logout}></lightning-button>
+        </div>
+    </div>
 </template>
