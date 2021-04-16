@@ -5,7 +5,6 @@ export default class ClassChoose extends LightningElement {
     currentClass = '';
     currentSubject = '';
     classOptions = [];
-    
     @track isSubjectDisabled = true;
 
     subjects = [];
@@ -21,7 +20,5 @@ export default class ClassChoose extends LightningElement {
         }
         this.template.querySelector(".classesCombo").options = this.classOptions;
     }
-
-
 
 }
