@@ -77,7 +77,7 @@ public without sharing class topicMakerController {
         for (ContentDocumentLink variable : links) {
             ids.add(variable.ContentDocumentId);
         }
-        List<ContentDocument> documents = [SELECT Id, Title, FileType FROM ContentDocument WHERE Id IN : ids];
+        List<ContentDocument> documents = [SELECT Id, Title, FileType FROM ContentDocument WHERE Id IN : ids ORDER BY CreatedDate];
         return documents;
     }
 

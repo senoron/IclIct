@@ -51,7 +51,7 @@ export default class TopicMaker extends LightningElement {
             this.topics[i].files = await getDocumentByTopic({topicId: this.topics[i].Id});
             //console.log(this.topics[i].files);
         }
-        console.log(this.topics);
+        //console.log(this.topics);
     }
     
     async addNewTopic(event){
@@ -78,6 +78,7 @@ export default class TopicMaker extends LightningElement {
     }
 
     async navigateToFiles(event){
+        console.log(event.currentTarget.value);
         let url = await getFileUrl({documentId: event.currentTarget.value});
         open(url, "_blank");
     }
