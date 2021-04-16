@@ -2,6 +2,8 @@ import { LightningElement, track } from 'lwc';
 import getAvialibleClasses from '@salesforce/apex/classChooseController.getAvialibleClasses';
 import getClassSubjects from '@salesforce/apex/classChooseController.getClassSubjects';
 import getTeacherClassSubjects from '@salesforce/apex/classChooseController.getTeacherClassSubjects';
+import addTeacherSubject from '@salesforce/apex/classChooseController.addTeacherSubject';
+import deleteTeacherSubject from '@salesforce/apex/classChooseController.deleteTeacherSubject';
 export default class ClassChoose extends LightningElement {
     classes = [];
     currentClass = '';
@@ -43,5 +45,19 @@ export default class ClassChoose extends LightningElement {
         this.currentSubject = event.detail.value;
     }
 
+    async addSubject(event){
+        await addTeacherSubject({subId: this.currentSubject});
+        this.subjects = [];
+        this.subjectOptions = [];
+        this.template.querySelector(".classesCombo").value = '';
+        this.template.querySelector(".subjectsCombo").value = '';
+        this.isSubjectDisabled = true;
+        this.teacherSubjects = [];
+    }
 
+    async deleteSubject(event){
+        await deleteTeacherSubject({subId: event.currentTarget.value});
+        this.teacherSubjects = [];
+        this.teacherSubjects = await getTeacherClassSubjects({classId: this.currentClass});
+    }
 }

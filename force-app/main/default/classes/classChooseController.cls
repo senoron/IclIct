@@ -37,4 +37,28 @@ public without sharing class classChooseController {
         List<Subject__c> resultSub = [SELECT Id, Name FROM Subject__c WHERE Id IN :subjects];
         return resultSub;
     }
+
+    @AuraEnabled
+    public static void addTeacherSubject(String subId){
+        String usrId = UserInfo.getUserId();     
+        Teacher__c teaher = [SELECT Id, School__c FROM Teacher__c WHERE User__c = :usrId];
+        String teacherId = teaher.Id;
+        List<TeachersSubject__c> teachSub = [SELECT Id, Teacher__c, Subject__c FROM TeachersSubject__c WHERE (Teacher__c = :teacherId AND Subject__c = :subId)];
+        if(teachSub.isEmpty()){
+            TeachersSubject__c temp = new TeachersSubject__c();
+            temp.Teacher__c = teacherId;
+            temp.Subject__c = subId;
+            teachSub.add(temp);
+        }
+        upsert teachSub;
+    }
+
+    @AuraEnabled
+    public static void deleteTeacherSubject(String subId){
+        String usrId = UserInfo.getUserId();     
+        Teacher__c teaher = [SELECT Id, School__c FROM Teacher__c WHERE User__c = :usrId];
+        String teacherId = teaher.Id;
+        List<TeachersSubject__c> teachSub = [SELECT Id FROM TeachersSubject__c WHERE (Teacher__c = :teacherId AND Subject__c = :subId)];
+        delete teachSub;
+    }
 }
