@@ -1,0 +1,60 @@
+<template>
+    <div class="slds-grid slds-wrap slds-gutters slds-m-top_meduim">
+        <div class="slds-col slds-size_2-of-3">
+            <div class="slds-box">
+                <template for:each={tasks} for:item='task'>
+                    <lightning-record-edit-form object-api-name="Task__c" key={task}>
+                        <lightning-card class="slds-p-around_x-small">
+                            <h1 class="slds-align_absolute-center"><b>Task №{task}</b></h1>
+                        </lightning-card>
+                        <lightning-input-field field-name="Question__c">
+                        </lightning-input-field>
+                        <lightning-input-field field-name="Var1__c">
+                        </lightning-input-field>
+                        <lightning-input-field field-name="Var2__c">
+                        </lightning-input-field>
+                        <lightning-input-field field-name="Var3__c">
+                        </lightning-input-field>
+                        <lightning-input-field field-name="Test__c" class="slds-hidden">
+                        </lightning-input-field>
+                    </lightning-record-edit-form>
+                </template>
+                <button class="slds-button slds-button_brand" onclick={addEdit}>Add new</button>
+                <button class="slds-button slds-button_success" onclick={submitAllTasks}>Submit</button>
+            </div>
+        </div>
+        <div class="slds-col slds-size_1-of-3">
+            <div class="slds-box">
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-combobox name="classes" class="classesCombo" label="Choose a class" value={classValue}
+                            placeholder="Select Class" onchange={classChange} required>
+                        </lightning-combobox>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-combobox name="subjects" class="subjectsCombo" label="Choose a subject" value={subjectValue}
+                            placeholder="Select Subject" onchange={subjectChange} disabled={subjectDisabled} required>
+                        </lightning-combobox>
+                    </div>
+                </div>
+                <lightning-combobox name="topics" class="topicsCombo" label="Choose a topic" value={topicValue}
+                    placeholder="Select Topic" onchange={topicChange} disabled={topicDisabled} required>
+                </lightning-combobox>
+                <div class="slds-p-around_medium lgc-bg">
+                    <lightning-input type="text" label="Enter test title" placeholder="type here..." required
+                        onchange={updateTitle}></lightning-input>
+                </div>
+                <div class="slds-grid slds-grid_vertical">
+                    <div class="slds-col">
+                        <lightning-input required class="startDate" type="datetime" name="startInput"
+                            label="Enter start time/date" onchange={updateDate}></lightning-input>
+                    </div>
+                    <div class="slds-col">
+                        <lightning-input required class="endDate" type="datetime" name="endInput"
+                            label="Enter end time/date" onchange={updateDate}></lightning-input>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
