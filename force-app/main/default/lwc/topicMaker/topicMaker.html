@@ -33,6 +33,36 @@
                         <button class="slds-button slds-button_brand" onclick={addNewTopic}>Add topic</button>
                     </div>
                 </div>
+                <lightning-accordion class="example-accordion" allow-multiple-sections-open>
+                    <template for:each={topics} for:item="topic">
+                        <div class="slds-grid" key={topic.Id}>
+                            <div class="slds-col">
+                                <lightning-accordion-section key={topic.Id} name={topic.Title__c} label={topic.Title__c}>
+                                    <template for:each={topic.files} for:item="file">
+                                        <div key={file.Id} class="slds-grid slds-size_1-of-1">
+                                            <div class="slds-col">
+                                                <button class="slds-button slds-button_bare" value={file.Id} onclick={navigateToFiles}>{file.Title}</button>
+                                            </div>
+                                            <div class="">
+                                                <lightning-button-icon icon-name="utility:close" variant="bare" value={file.Id} alternative-text={file.Title} onclick={deleteFile}></lightning-button-icon>
+                                            </div>
+                                        </div>
+                                    </template>
+                                    <lightning-file-upload
+                                        label="Upload topic"
+                                        name="topicUploader"
+                                        accept={acceptedFormats}
+                                        record-id={topic.Id}
+                                        onuploadfinished={handleUploadFinished}>
+                                    </lightning-file-upload>
+                                </lightning-accordion-section>
+                            </div>
+                            <div class="">
+                                <lightning-button-icon icon-name="utility:delete" value={topic.Id} variant="bare" onclick={deleteTopic}></lightning-button-icon>
+                            </div>
+                        </div>
+                    </template>
+                </lightning-accordion>
             </div>
         </div>
     </div>
