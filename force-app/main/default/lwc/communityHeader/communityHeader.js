@@ -1,3 +1,11 @@
-import { LightningElement } from 'lwc';
+import {
+    LightningElement
+} from 'lwc';
 
-export default class CommunityHeader extends LightningElement {}
+export default class CommunityHeader extends LightningElement {
+
+    logout() {
+        open('/secur/logout.jsp', '_self');
+    }
+
+}
