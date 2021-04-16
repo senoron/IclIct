@@ -1,3 +1,17 @@
-<aura:component>
+<aura:component implements="forceCommunity:themeLayout">
+    <aura:attribute name="header" type="Aura.Component[]" required="false" />
+    <aura:attribute name="footer" type="Aura.Component[]" required="false" />
 
-</aura:component>	
+    <div class="slds-grid slds-grid_vertical" style="min-height: 100vh;">
+        <header class="slds-col slds-size_1-of-1 slds-border_bottom">
+            {!v.header}
+        </header>
+        <div class="slds-col slds-size_8-of-12" style="flex: 1; margin: 0 auto;">
+            {!v.body}
+        </div>
+        <footer class="slds-col slds-size_1-of-1 slds-border_top">
+            {!v.footer}
+        </footer>
+    </div>
+
+</aura:component>

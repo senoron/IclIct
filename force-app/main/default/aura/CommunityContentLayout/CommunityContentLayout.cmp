@@ -1,0 +1,11 @@
+<aura:component implements="forceCommunity:layout">
+    <aura:attribute name="column" type="Aura.Component[]" required="false"></aura:attribute>
+
+    <div class="container">
+        <div class="contentPanel">
+            <div class="right">
+                {!v.column}
+            </div>
+        </div>
+    </div>
+</aura:component>
