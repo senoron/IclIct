@@ -15,7 +15,7 @@ export default class CommunityHeader extends LightningElement {
     @wire(isTeacher)
     wiredTeacher({
         data,
-        result
+        error
     }) {
         if (data) {
             this.isTeacher = data;
