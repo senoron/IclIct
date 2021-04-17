@@ -27,7 +27,8 @@ export default class CardMaker extends LightningElement {
             this.setsOptions.push({label: this.sets[i].Name, value: this.sets[i].Id});
             this.sets[i].cards = await getSetCards({setId: this.sets[i].Id});
         }
-        this.template.querySelector(".setsCombo").options = this.setsOptions;       
+        this.template.querySelector(".setsCombo").options = this.setsOptions;   
+        console.log(this.sets);    
     }
 
     async connectedCallback(){
@@ -41,17 +42,18 @@ export default class CardMaker extends LightningElement {
 
     setsChange(event){
         this.setsValue = event.detail.value;
+        console.log(this.setsValue);
         this.isAddEnabled = false;
     }
 
     
     async addNewCardFunc(event){
         let form = this.template.querySelector("lightning-record-edit-form");
-        let cards = form.querySelectorAll("lightning-input-field");
+        let cards = from.querySelectorAll("lightning-input-field");
+        console.log("Cards");
+        console.log(cards);
         cards[cards.length - 1].value = this.setsValue;
-        console.log(this.setsValue);
         form.submit();
-        console.log("Submited");
         cards[0].value = '';
         cards[1].value = '';
         if(this.template.querySelector(".setsCombo").value == ''){
