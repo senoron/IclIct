@@ -44,11 +44,17 @@ public without sharing class MyAssignmentsController {
                     homeworksId.add(homework.Id);
                 }
             }
+            List<StudentsHomework__c> stdHomeworks = [SELECT Id, Name, Homework__c FROM StudentsHomework__c WHERE Homework__c IN:homeworksId];
+
+            for (StudentsHomework__c stdHomework : stdHomeworks) {
+                homeworksId.remove(stdHomework.Homework__c);
+            }
 
             List<ContentDocumentLink> links = [SELECT LinkedEntityId, ContentDocumentId, ContentDocument.Title FROM ContentDocumentLink WHERE LinkedEntityId IN: homeworksId];
             List<Test__c> tests = [SELECT Id, Name, Homework__c FROM Test__c WHERE Homework__c IN: homeworksId];
             Map<String, List<Test__c>> testsByHomeworkId = new Map<String, List<Test__c>>();
             Map<String, List<ContentDocument>> documentByHomeworkId = new Map<String, List<ContentDocument>>();
+
 
             for (Test__c test : tests) {
 

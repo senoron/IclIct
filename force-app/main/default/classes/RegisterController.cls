@@ -1,7 +1,7 @@
 public without sharing class RegisterController {
 
     public static final String COMMUNITY_ACCOUNT = '0010900000GDgDbAAL';
-    public static final String PROFILE_ID = '00e09000001EfzXAAS';
+    public static final String PROFILE_ID = '00e090000034ofOAAQ';
 
 	public RegisterController () {}
 
@@ -61,7 +61,7 @@ public without sharing class RegisterController {
 				TimeZoneSidKey='GMT',
 				ContactId = cont.Id,
                 IsTeacher__c = userType == 'Teacher' ? true : false
-				);
+                				);
 
             insert portalUser;
 
