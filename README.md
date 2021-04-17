@@ -1,18 +1,16 @@
-# Salesforce DX Project: Next Steps
+I can learn / I can teach
 
-Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
+https://i-can-study-developer-edition.eu40.force.com/s/login
 
-## How Do You Plan to Deploy Your Changes?
+Акаунти для тестування системи:
+     
+    Учитель: login: migrogodlidia@gmail.com password: qwerty123
+    Учень: login: vasilvolosh@gmail.com password: qwerty1234
 
-Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
+Ключ для самостійної реєстрації:
+  
+    вчителем: teachKey11
+    
 
-## Configure Your Salesforce DX Project
-
-The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
-
-## Read All About It
-
-- [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
-- [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
-- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
-- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
+Оскільки проект розроблений на CRM платформі SalesFroce ми викладали у гіт кимпоненти системи, які ми писали у процесі розробки та об'єкти soql бази данних.
+Система хоститься і більдиться на самому salesFroce.
