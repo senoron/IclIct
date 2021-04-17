@@ -5,10 +5,7 @@
         <apex:slds/>
 
         <style type="text/css">
-            .lightning-input_input {
-                border-radius: 50px;
-            }
-
+           
             input:active:focus,
             input:focus {
                 outline: 0 !important;
@@ -30,7 +27,6 @@
 
             input,
             button {
-                border-radius: 50px!important;
                 font-family: "Sharp Sans Display No1", sans-serif;
                 padding: 0.5rem 0.5rem 0.5rem 1rem!important;
             }
@@ -217,7 +213,7 @@
                         <apex:outputText value="" />
                         <apex:commandButton styleClass="slds-button slds-button_brand slds-button_stretch slds-hide" action="{!registerUser}" value=""
                             id="submitApex" />
-                        <button id="submit" class="slds-button slds-button_brand slds-button_stretch" onclick="validateSubmit();">Sign Up</button>
+                        <button id="submit" class="slds-button slds-button_brand slds-button_stretch" style="margin-left: 0!important;" onclick="validateSubmit();">Sign Up</button>
                     </div>
 
                 </div>
