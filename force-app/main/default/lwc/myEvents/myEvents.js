@@ -7,11 +7,64 @@ import {
     loadStyle
 } from 'lightning/platformResourceLoader';
 import fullCalendar from '@salesforce/resourceUrl/fullCalendar';
+import getCalendarEntries from '@salesforce/apex/MyEventsController.getCalendarEntries';
 
 export default class myEvents extends LightningElement {
 
     fullCalendarJsInitialised = false;
     calendar;
+
+    events;
+
+    // {
+    //     title: 'test',
+    //     start: '2021-04-13T12:30:00',
+    //     end: '2021-05-13T12:30:00',
+    //     allDay: false
+    // }
+
+    get eventList() {
+        try {
+            let result = [];
+
+            events.forEach(event => {
+                result.push(
+                    {
+                        title: event.Message__c,
+                        start: event.StartDate__c,
+                        end: event.EndDate__c,
+                        allDay: false
+                    }
+                );
+            });
+
+            return result;
+        } catch (e) {
+
+        }
+    }
+
+    async connectedCallback() {
+        const events = await getCalendarEntries();
+        try {
+            let result = [];
+
+            events.forEach(event => {
+                result.push(
+                    {
+                        title: event.Message__c,
+                        start: event.StartDate__c,
+                        end: event.EndDate__c,
+                        allDay: false
+                    }
+                );
+            });
+
+            this.events = result;
+        } catch (e) {
+
+        }
+    }
 
     renderedCallback() {
 
@@ -22,19 +75,19 @@ export default class myEvents extends LightningElement {
         this.fullCalendarJsInitialised = true;
 
         Promise.all([
-            loadScript(this, fullCalendar + "/fullCalendar/packages/core/main.js"),
-            loadStyle(this, fullCalendar + "/fullCalendar/packages/core/main.css")
+            loadScript(this, fullCalendar + "/packages/core/main.js"),
+            loadStyle(this, fullCalendar + "/packages/core/main.css")
         ]).then(() => {
             Promise.all([
-                    loadScript(this, fullCalendar + "/fullCalendar/packages/daygrid/main.js"),
-                    loadStyle(this, fullCalendar + "/fullCalendar/packages/daygrid/main.css"),
-                    loadScript(this, fullCalendar + "/fullCalendar/packages/list/main.js"),
-                    loadStyle(this, fullCalendar + "/fullCalendar/packages/list/main.css"),
-                    loadScript(this, fullCalendar + "/fullCalendar/packages/timegrid/main.js"),
-                    loadStyle(this, fullCalendar + "/fullCalendar/packages/timegrid/main.css"),
-                    loadScript(this, fullCalendar + "/fullCalendar/packages/interaction/main.js"),
-                    loadScript(this, fullCalendar + "/fullCalendar/packages/moment/main.js"),
-                    loadScript(this, fullCalendar + "/fullCalendar/packages/moment-timezone/main.js"),
+                    loadScript(this, fullCalendar + "/packages/daygrid/main.js"),
+                    loadStyle(this, fullCalendar + "/packages/daygrid/main.css"),
+                    loadScript(this, fullCalendar + "/packages/list/main.js"),
+                    loadStyle(this, fullCalendar + "/packages/list/main.css"),
+                    loadScript(this, fullCalendar + "/packages/timegrid/main.js"),
+                    loadStyle(this, fullCalendar + "/packages/timegrid/main.css"),
+                    loadScript(this, fullCalendar + "/packages/interaction/main.js"),
+                    loadScript(this, fullCalendar + "/packages/moment/main.js"),
+                    loadScript(this, fullCalendar + "/packages/moment-timezone/main.js"),
                 ])
                 .then(() => {
                     const ele = this.template.querySelector('div.calendar');
@@ -91,12 +144,7 @@ export default class myEvents extends LightningElement {
                         //     events: this.eventSourceHandler,
                         //     id: "custom"
                         // }],
-                        events: [{
-                            title: 'test',
-                            start: '2021-04-13T12:30:00',
-                            end: '2021-05-13T12:30:00',
-                            allDay : false
-                        }]
+                        events: this.events
                     });
                     this.calendar.render();
                 })
@@ -109,17 +157,4 @@ export default class myEvents extends LightningElement {
                 });
         });
     }
-
-    // eventSourceHandler(info, successCallback, failureCallback) {
-    //     successCallback(
-    //         [{
-    //             title: 'SVYATLOH',
-    //             start: '13.04.2021',
-    //             end: '14.04.2021',
-    //             Id: 'custom'
-    //         }]
-    //     );
-    // }
-
-
 }
