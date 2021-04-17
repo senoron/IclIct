@@ -8,6 +8,14 @@ import getDocumentByTopic from '@salesforce/apex/topicMakerController.getDocumen
 import deleteTopicFile from '@salesforce/apex/topicMakerController.deleteFile';
 import getFileUrl from '@salesforce/apex/topicMakerController.getFileUrl';
 export default class TopicMaker extends LightningElement {
+    
+    @api uploadTopic = '';
+    @api chooseSubject = '';
+    @api chooseClass = '';
+    @api selectClass;
+    @api selectSubject;
+    @api addButtonName;
+    
     classes = [];
     classOptions = [];
     classValue = '';

@@ -11,7 +11,12 @@ export default class ClassChoose extends LightningElement {
     classOptions = [];
     @track isSubjectDisabled = true;
 
-    @api label = '';
+    @api chooseClass;
+    @api chooseSubject;
+    @api addButtonName;
+    @api selectClass;
+    @api selectSubject;
+    @api removeButtonName;
 
     subjects = [];
     subjectOptions = [];
@@ -48,13 +53,16 @@ export default class ClassChoose extends LightningElement {
     }
 
     async addSubject(event){
-        await addTeacherSubject({subId: this.currentSubject});
-        this.subjects = [];
-        this.subjectOptions = [];
-        this.template.querySelector(".classesCombo").value = '';
-        this.template.querySelector(".subjectsCombo").value = '';
-        this.isSubjectDisabled = true;
-        this.teacherSubjects = [];
+        let combos = this.querySelectorAll("lightning-combobox");
+        if(combos[0].value != '' && combos[1].value != ''){
+            await addTeacherSubject({subId: this.currentSubject});
+            this.subjects = [];
+            this.subjectOptions = [];
+            this.template.querySelector(".classesCombo").value = '';
+            this.template.querySelector(".subjectsCombo").value = '';
+            this.isSubjectDisabled = true;
+            this.teacherSubjects = [];
+        }
     }
 
     async deleteSubject(event){

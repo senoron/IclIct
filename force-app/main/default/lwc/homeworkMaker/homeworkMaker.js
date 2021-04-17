@@ -3,29 +3,21 @@ import {
     track,
     api
 } from 'lwc';
+
 import getTeacherClasses from '@salesforce/apex/testMakerController.getTeacherClasses';
 import getClassSubjects from '@salesforce/apex/classChooseController.getClassSubjects';
 import getSubjectTopics from '@salesforce/apex/testMakerController.getSubjectTopics';
-import createHomework from '@salesforce/apex/testMakerController.createHomework'
-import createTest from '@salesforce/apex/testMakerController.createTest'
-export default class TestMaker extends LightningElement {
+import createHomework from '@salesforce/apex/HomeworkMakerController.createHomework';
+import createLink from '@salesforce/apex/HomeworkMakerController.createLink';
 
-    @api addNewLabel;
-    @api submitLabel;
-    @api testTitleLabel;
+export default class HomeworkMaker extends LightningElement {
 
+    @api uploadFileLabel;
     @api chooseClassLabel;
     @api chooseSubjectLabel;
     @api chooseTopicLabel;
     @api startLabel;
     @api endLabel;
-
-    @api taskLabel;
-
-    @track tasks = [1];
-    i = 2;
-
-    testTitle = '';
 
     classValue = '';
     classOption = [];
@@ -55,12 +47,9 @@ export default class TestMaker extends LightningElement {
             });
         }
         this.template.querySelector(".classesCombo").options = this.classOption;
+        this.handleChangeGeneral();
     }
 
-    addEdit(event) {
-        this.tasks.push(this.i);
-        this.i++;
-    }
 
     async classChange(event) {
         this.classValue = event.detail.value;
@@ -85,6 +74,7 @@ export default class TestMaker extends LightningElement {
 
         this.subjectDisabled = false;
         this.topicDisabled = true;
+        this.handleChangeGeneral();
     }
 
     async subjectChange(event) {
@@ -105,14 +95,12 @@ export default class TestMaker extends LightningElement {
         this.template.querySelector(".topicsCombo").options = this.topicsOption;
 
         this.topicDisabled = false;
+        this.handleChangeGeneral();
     }
 
     topicChange(event) {
         this.topicValue = event.detail.value;
-    }
-
-    updateTitle(event) {
-        this.testTitle = event.detail.value;
+        this.handleChangeGeneral();
     }
 
     updateDate(event) {
@@ -120,48 +108,40 @@ export default class TestMaker extends LightningElement {
         this.endDateValue = this.template.querySelector(".endDate").value;
         console.log(this.startDateValue);
         console.log(this.endDateValue);
+        this.handleChangeGeneral();
     }
 
-    async submitAllTasks(event) {
-        if (this.testTitle && this.endDateValue && this.startDateValue) {
-            let allTasks = this.template.querySelectorAll("lightning-record-edit-form");
-            let homeworkId = await createHomework({
-                testTitle: this.testTitle,
+    handleChangeGeneral() {
+        if (
+            this.classValue && this.topicValue && this.startDateValue && this.endDateValue && this.subjectValue
+        ) {
+            this.template.querySelector('[data-id="upload"]').disabled = false;
+        }
+    }
+
+    async handleUpload(event) {
+
+        const files = event.detail.files;
+
+        for (let i = 0; i < files.length; i++) {
+
+            const file = files[i];
+
+            const homeworkId = await createHomework({
+                testTitle: file.name,
                 topicId: this.topicValue,
                 startDate: this.startDateValue,
                 endDate: this.endDateValue,
                 classId: this.classValue
             });
-            let testId = await createTest({
-                title: this.testTitle,
-                homeworkId: homeworkId
+
+            createLink({
+                recordId: homeworkId,
+                documentId: file.documentId
             });
-            for (let i = 0; i < allTasks.length; i++) {
-                try {
-                    let test = allTasks[i].querySelectorAll('lightning-input-field');
-                    test[test.length - 1].value = testId;
-                    allTasks[i].submit();
-                    // console.log(test[test.length - 1].value);
-                } catch (error) {
-                    console.log(error)
-                }
-            }
+
         }
-        setTimeout(() => {
-            this.tasks.length = 0;
-            this.template.querySelector("lightning-input").value = "";
-            this.template.querySelector(".classesCombo").value = "";
-            this.template.querySelector(".topicsCombo").value = "";
-            this.template.querySelector(".topicsCombo").options = [];
-            this.template.querySelector(".subjectsCombo").options = [];
-            this.template.querySelector(".subjectsCombo").value = '';
-            this.topicDisabled = true;
-            this.template.querySelector(".startDate").value = "";
-            this.template.querySelector(".endDate").value = "";
-            this.startDateValue = undefined;
-            this.endDateValue = undefined;
-            this.i = 2;
-            setTimeout(() => this.tasks.push(1), 250);
-        }, 500)
+
     }
+
 }

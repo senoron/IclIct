@@ -6,6 +6,22 @@
         <target>lightning__AppPage</target>
         <target>lightning__RecordPage</target>
         <target>lightning__HomePage</target>
+        <target>lightningCommunity__Default</target>
         <target>lightningCommunity__Page</target>
     </targets>
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default">
+            <property name="fistTab" type="String" />
+            <property name="secondTab" type="String" />
+            <property name="selectCardSet" type="String" />
+            <property name="enterTrainName" type="String" />
+            <property name="addNewCardName" type="String" />
+            <property name="addNewCard" type="String" />
+            <property name="addNewSet" type="String" />
+            <property name="chooseAddingTrain" type="String" />
+            <property name="chooseTrain" type="String" />
+            <property name="question" type="String" />
+            <property name="answer" type="String" />
+        </targetConfig>
+    </targetConfigs>
 </LightningComponentBundle>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>51.0</apiVersion>
+    <isExposed>true</isExposed>
+    <targets>
+        <target>
+            lightningCommunity__Page
+        </target>
+        <target>
+            lightningCommunity__Default
+        </target>
+    </targets>
+    <targetConfigs>
+      <targetConfig targets="lightningCommunity__Default">
+          <property name="testBuilder" type="String" />
+          <property name="homeworkBuilder" type="String" />
+          <property name="uploadFileLabel" type="String" />
+          <property name="chooseClassLabel" type="String" />
+          <property name="chooseSubjectLabel" type="String" />
+          <property name="chooseTopicLabel" type="String" />
+          <property name="startLabel" type="String" />
+          <property name="endLabel" type="String" />
+          <property name="addNewLabel" type="String" />
+          <property name="submitLabel" type="String" />
+          <property name="testTitleLabel" type="String" />
+          <property name="taskLabel" type="String" />
+      </targetConfig>
+
+    </targetConfigs>
+</LightningComponentBundle>

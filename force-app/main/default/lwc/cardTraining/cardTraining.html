@@ -1,9 +1,8 @@
 <template>
     <lightning-combobox
-        label="Choose a train"
+        label={chooseTrain}
         class="setsCombo"
         value={trainValue}
-        placeholder="Select Progress"
         onchange={trainChange}>
     </lightning-combobox>
     <div class="slds-grid slds-grid_align-center slds-m-top_medium" if:true={cardEnabled}>

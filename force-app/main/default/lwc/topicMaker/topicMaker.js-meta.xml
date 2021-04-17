@@ -7,5 +7,16 @@
         <target>lightning__RecordPage</target>
         <target>lightning__HomePage</target>
         <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
     </targets>
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default">
+            <property name="uploadTopic" type="String" />
+            <property name="chooseSubject" type="String" />
+            <property name="chooseClass" type="String" />
+            <property name="selectClass" type="String" />
+            <property name="selectSubject" type="String" />
+            <property name="addButtonName" type="String" />
+        </targetConfig>
+    </targetConfigs>
 </LightningComponentBundle>

@@ -1,0 +1,27 @@
+<template>
+    <lightning-tabset>
+        <lightning-tab label={testBuilder}>
+            <c-test-maker
+                choose-class-label={chooseClassLabel}
+                choose-subject-label={chooseSubjectLabel}
+                choose-topic-label={chooseTopicLabel}
+                start-label={startLabel}
+                end-label={endLabel}
+                add-new-label={addNewLabel}
+                submit-label={submitLabel}
+                test-title-label={testTitleLabel}
+                task-label={taskLabel}
+            ></c-test-maker>
+        </lightning-tab>
+        <lightning-tab label={homeworkBuilder}>
+            <c-homework-maker
+                upload-file-label={uploadFileLabel}
+                choose-class-label={chooseClassLabel}
+                choose-subject-label={chooseSubjectLabel}
+                choose-topic-label={chooseTopicLabel}
+                start-label={startLabel}
+                end-label={endLabel}
+            ></c-homework-maker>
+        </lightning-tab>
+    </lightning-tabset>
+</template>

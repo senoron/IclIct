@@ -5,24 +5,24 @@
                 <lightning-combobox
                     name="classes" 
                     class="classesCombo" 
-                    label="Choose a class" 
+                    label={chooseClass} 
                     value={classValue}
-                    placeholder="Select class" 
+                    placeholder={selectClass} 
                     onchange={classChange} 
                     required>
                 </lightning-combobox>
                 <lightning-combobox
                     name="subjects" 
                     class="subjectsCombo" 
-                    label="Choose a subjects" 
+                    label={chooseSubject} 
                     value={subjectsValue}
-                    placeholder="Select subject" 
+                    placeholder={selectSubject}
                     onchange={subjectsChange}
                     disabled={isSubjectDisabled}
                     required>
                 </lightning-combobox>
                 <div class="slds-align_absolute-center slds-m-top_medium">
-                    <button class="slds-button slds-button_brand" onclick={addSubject}>Add to my subjects</button>
+                    <button class="slds-button slds-button_brand" onclick={addSubject}>{addButtonName}</button>
                 </div>
             </div>
         </div>
@@ -35,7 +35,7 @@
                                 <div class="slds-m-left_medium">{teachSub.Name}</div>
                             </div>
                             <div class="slds-col" align="right">
-                                <button class="slds-button slds-button_destructive" value={teachSub.Id} onclick={deleteSubject}>Remove</button>
+                                <button class="slds-button slds-button_destructive" value={teachSub.Id} onclick={deleteSubject}>{removeButtonName}</button>
                             </div>
                         </div>
                     </div>

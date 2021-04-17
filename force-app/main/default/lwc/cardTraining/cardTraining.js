@@ -1,4 +1,4 @@
-import { LightningElement, track } from 'lwc';
+import { api, LightningElement, track } from 'lwc';
 import getAllSets from '@salesforce/apex/cardTrainingController.getAllSets';
 import getSetCards from '@salesforce/apex/cardTrainingController.getSetCards';
 
@@ -6,6 +6,8 @@ export default class CardTraining extends LightningElement {
     sets = [];
     setsOptions = [];
     
+    @api chooseTrain;
+
     @track cardEnabled = false;
     @track cardVisible = false;
     @track task;

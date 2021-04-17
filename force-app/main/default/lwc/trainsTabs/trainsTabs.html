@@ -1,10 +1,21 @@
 <template>
     <lightning-tabset>
         <lightning-tab label={fistTab}>
-            <c-card-maker></c-card-maker>
+            <c-card-maker
+                select-card-set={selectCardSet}
+                enter-train-name={enterTrainName}
+                add-new-card-name={addNewCardName}
+                add-new-card={addNewCard}
+                add-new-set={addNewSet}
+                choose-adding-train={chooseAddingTrain}
+                question={question}
+                answer={answer}>
+            </c-card-maker>
         </lightning-tab>
         <lightning-tab label={secondTab}>
-            <c-card-training></c-card-training>
+            <c-card-training
+                choose-train={chooseTrain}>
+            </c-card-training>
         </lightning-tab>
     </lightning-tabset>
 </template>

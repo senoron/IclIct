@@ -7,9 +7,14 @@ import deleteCardSet from '@salesforce/apex/cardMakerController.deleteCardSet';
 export default class CardMaker extends LightningElement {
     trainName = '';
 
-    @api label = '';
-
     @track isAddEnabled = true;
+    @api selectCardSet;
+    @api enterTrainName;
+    @api addNewCard;
+    @api addNewSet;
+    @api chooseAddingTrain;
+    @api question;
+    @api answer;
 
     setsValue = '';
     @track sets = [];
