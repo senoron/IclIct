@@ -28,7 +28,7 @@
                         <lightning-input-field field-name="CardSet__c" class="slds-hidden">
                         </lightning-input-field>
                     </lightning-record-edit-form>
-                    <button class="slds-button slds-button_success slds-align_absolute-center slds-size-4-of-12" onclick={addNewCard}>Add new card</button>
+                    <button class="slds-button slds-button_success slds-align_absolute-center slds-size-4-of-12" disabled={isAddEnabled} onclick={addNewCard}>Add new card</button>
                 </div>
             </div>
         </div>

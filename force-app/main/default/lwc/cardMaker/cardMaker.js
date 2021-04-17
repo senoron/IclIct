@@ -7,6 +7,8 @@ import deleteCardSet from '@salesforce/apex/cardMakerController.deleteCardSet';
 export default class CardMaker extends LightningElement {
     trainName = '';
 
+    @track isAddEnabled = true;
+
     setsValue = '';
     @track sets = [];
     setsOptions = [];
@@ -32,17 +34,25 @@ export default class CardMaker extends LightningElement {
 
     setsChange(event){
         this.setsValue = event.detail.value;
+        this.isAddEnabled = false;
     }
 
     
     async addNewCard(event){
-        let form = this.template.querySelector("lightning-record-edit-form");
-        let cards = form.querySelectorAll("lightning-input-field");
-        cards[cards.length - 1].value = this.setsValue;
-        form.submit();
-        cards[0].value = '';
-        cards[1].value = '';
-        await this.updateSets();
+        let inputs = this.template.querySelectorAll("lightning-input-field");
+        
+        if(inputs[0].value != '' && inputs[1].value){
+            let form = this.template.querySelector("lightning-record-edit-form");
+            let cards = form.querySelectorAll("lightning-input-field");
+            cards[cards.length - 1].value = this.setsValue;
+            form.submit();
+            cards[0].value = '';
+            cards[1].value = '';
+            if(this.template.querySelector(".setsCombo").value == ''){
+                this.isAddEnabled = true;
+            }
+            await this.updateSets(); 
+        }
     }
 
     async createCardSet(event){
