@@ -7,6 +7,7 @@ import LOGO_VAR1 from '@salesforce/resourceUrl/logo_var1';
 import LOGO_VAR2 from '@salesforce/resourceUrl/logo_var2';
 
 import isTeacher from '@salesforce/apex/HeaderController.isTeacher';
+import changeLang from '@salesforce/apex/HeaderController.changeLanguage';
 
 export default class CommunityHeader extends LightningElement {
 
@@ -30,6 +31,11 @@ export default class CommunityHeader extends LightningElement {
 
     logout() {
         open('/secur/logout.jsp', '_self');
+    }
+
+    async changeLanguage() {
+        await changeLang();
+        open(location.href, '_self');
     }
 
 }

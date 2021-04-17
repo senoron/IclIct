@@ -9,4 +9,11 @@ public without sharing class HeaderController {
         }
     }
 
+    @AuraEnabled
+    public static void changeLanguage(){
+       User u = [SELECT Name, Id, LocaleSidKey	 FROM User WHERE Id =: UserInfo.getUserId()];
+        u.LocaleSidKey = u.LocaleSidKey == 'en_US' ? 'uK' : 'en_US';
+        update u;
+    }
+
 }

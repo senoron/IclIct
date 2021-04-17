@@ -28,14 +28,12 @@ export default class myEvents extends LightningElement {
             let result = [];
 
             events.forEach(event => {
-                result.push(
-                    {
-                        title: event.Message__c,
-                        start: event.StartDate__c,
-                        end: event.EndDate__c,
-                        allDay: false
-                    }
-                );
+                result.push({
+                    title: event.Message__c,
+                    start: event.StartDate__c,
+                    end: event.EndDate__c,
+                    allDay: false
+                });
             });
 
             return result;
@@ -50,14 +48,12 @@ export default class myEvents extends LightningElement {
             let result = [];
 
             events.forEach(event => {
-                result.push(
-                    {
-                        title: event.Message__c,
-                        start: event.StartDate__c,
-                        end: event.EndDate__c,
-                        allDay: false
-                    }
-                );
+                result.push({
+                    title: event.Message__c,
+                    start: event.EndDate__c,
+                    // end: event.EndDate__c,
+                    allDay: true
+                });
             });
 
             this.events = result;
@@ -76,6 +72,7 @@ export default class myEvents extends LightningElement {
 
         Promise.all([
             loadScript(this, fullCalendar + "/packages/core/main.js"),
+            loadScript(this, fullCalendar + "/packages/core/locales/uk.js"),
             loadStyle(this, fullCalendar + "/packages/core/main.css")
         ]).then(() => {
             Promise.all([
@@ -88,11 +85,13 @@ export default class myEvents extends LightningElement {
                     loadScript(this, fullCalendar + "/packages/interaction/main.js"),
                     loadScript(this, fullCalendar + "/packages/moment/main.js"),
                     loadScript(this, fullCalendar + "/packages/moment-timezone/main.js"),
+
                 ])
                 .then(() => {
                     const ele = this.template.querySelector('div.calendar');
 
                     this.calendar = new FullCalendar.Calendar(ele, {
+                        locale : 'uk',
                         plugins: ["dayGrid", "timeGrid", "list", "interaction", "moment", "resourceTimeGridPlugin"],
                         views: {
                             listDay: {
