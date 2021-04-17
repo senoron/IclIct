@@ -5,7 +5,7 @@ https://i-can-study-developer-edition.eu40.force.com/s/login
 Акаунти для тестування системи:
      
     Учитель: login: migrogodlidia@gmail.com password: qwerty123
-    Учень: login: vasilvolosh@gmail.com password: qwerty123
+    Учень: login: vasilvolosh@gmail.com password: qwerty1234
 
 Ключ для самостійної реєстрації:
   
