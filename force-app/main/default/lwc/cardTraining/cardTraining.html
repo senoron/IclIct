@@ -1,0 +1,21 @@
+<template>
+    <lightning-combobox
+        label="Choose a train"
+        class="setsCombo"
+        value={trainValue}
+        placeholder="Select Progress"
+        onchange={trainChange}>
+    </lightning-combobox>
+    <div class="slds-grid slds-grid_align-center slds-m-top_medium" if:true={cardEnabled}>
+        <div class="slds-col slds-size_1-of-2">
+            <div class="slds-box">
+                <h3 class="wrapped-content slds-text-align_center">{task.Question__c}</h3>
+                <div class="wrapped-content answer slds-m-top_small" if:true={cardVisible}>{task.Answer__c}</div>
+                <div class="slds-m-top_small slds-align_absolute-center">
+                    <button class="slds-button slds-button_destructive" onclick={handleShow}>Show</button>
+                    <button class="slds-button slds-button_success" onclick={handleNext}>Next</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

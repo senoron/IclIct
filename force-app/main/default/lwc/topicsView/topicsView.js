@@ -1,4 +1,4 @@
-import { LightningElement, track } from 'lwc';
+import { LightningElement, track, api } from 'lwc';
 import getUserClasses from '@salesforce/apex/topicViewController.getUserClasses';
 import getSubjectTopics from '@salesforce/apex/topicViewController.getSubjectTopics';
 import getDocumentByTopic from '@salesforce/apex/topicViewController.getDocumentByTopic';
@@ -6,6 +6,8 @@ import getFileUrl from '@salesforce/apex/topicViewController.getFileUrl';
 
 export default class TopicsView extends LightningElement {
     @track subjects = [];
+
+    @api label = '';
 
     async connectedCallback(){
         this.subjects = await getUserClasses();

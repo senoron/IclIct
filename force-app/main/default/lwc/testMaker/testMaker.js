@@ -1,4 +1,4 @@
-import { LightningElement, track } from 'lwc';
+import { LightningElement, track, api } from 'lwc';
 import getTeacherClasses from '@salesforce/apex/testMakerController.getTeacherClasses';
 import getClassSubjects from '@salesforce/apex/classChooseController.getClassSubjects';
 import getSubjectTopics from '@salesforce/apex/testMakerController.getSubjectTopics';
@@ -7,6 +7,8 @@ import createTest from '@salesforce/apex/testMakerController.createTest'
 export default class TestMaker extends LightningElement {
     @track tasks = [1];
     i = 2;
+
+    @api label = '';
 
     testTitle = '';
 

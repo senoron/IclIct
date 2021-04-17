@@ -1,4 +1,4 @@
-import { LightningElement, track } from 'lwc';
+import { LightningElement, track, api } from 'lwc';
 import getAvialibleClasses from '@salesforce/apex/classChooseController.getAvialibleClasses';
 import getClassSubjects from '@salesforce/apex/classChooseController.getClassSubjects';
 import getTeacherClassSubjects from '@salesforce/apex/classChooseController.getTeacherClassSubjects';
@@ -10,6 +10,8 @@ export default class ClassChoose extends LightningElement {
     currentSubject = '';
     classOptions = [];
     @track isSubjectDisabled = true;
+
+    @api label = '';
 
     subjects = [];
     subjectOptions = [];

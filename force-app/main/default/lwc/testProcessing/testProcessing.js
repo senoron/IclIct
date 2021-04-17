@@ -1,4 +1,4 @@
-import { LightningElement, track } from 'lwc';
+import { LightningElement, track, api } from 'lwc';
 import getTest from '@salesforce/apex/testProcessingController.getTest';
 import createStudentsHomework from '@salesforce/apex/testProcessingController.createStudentsHomework';
 export default class TestProcessing extends LightningElement {
@@ -6,6 +6,8 @@ export default class TestProcessing extends LightningElement {
     option = [];
     @track tasks = [];
     currentTest;
+
+    @api label = '';
 
     async shuffle(a) {
         var j, x, i;

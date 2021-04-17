@@ -3,10 +3,10 @@
         <div class="slds-col slds-size_1-of-2">
             <div class="slds-box">
                 <div class="slds-grid slds-gutters">
-                    <div class="slds-col slds-size_10-of-12">
-                        <lightning-input  class="newCardInput" type="text" label="Enter train name" placeholder="Enter train name" variant="label-hidden" onchange={updateName}></lightning-input>
+                    <div class="slds-col">
+                        <lightning-input  class="newCardInput" style="float: right;" type="text" label={label} placeholder="Enter train name" variant="label-hidden" onchange={updateName}></lightning-input>
                     </div>
-                    <div class="slds-col slds-size_2-of-12">
+                    <div class="slds-col">
                         <button class="slds-button slds-button_brand" onclick={createCardSet}>Add new</button>
                     </div>
                 </div>

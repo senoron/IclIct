@@ -1,4 +1,4 @@
-import { LightningElement, track } from 'lwc';
+import { LightningElement, track, api } from 'lwc';
 import getTeacherClasses from '@salesforce/apex/topicMakerController.getTeacherClasses';
 import getClassSubjects from '@salesforce/apex/topicMakerController.getClassSubjects';
 import addTopic from '@salesforce/apex/topicMakerController.addTopic';
@@ -11,6 +11,8 @@ export default class TopicMaker extends LightningElement {
     classes = [];
     classOptions = [];
     classValue = '';
+
+    @api label = '';
 
     subjects = [];
     subjectOptions = [];

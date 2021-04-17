@@ -1,4 +1,4 @@
-import { LightningElement, track } from 'lwc';
+import { LightningElement, track, api } from 'lwc';
 import getUserSets from '@salesforce/apex/cardMakerController.getUserSets';
 import createCardSet from '@salesforce/apex/cardMakerController.createCardSet';
 import getSetCards from '@salesforce/apex/cardMakerController.getSetCards';
@@ -6,6 +6,8 @@ import deleteCard from '@salesforce/apex/cardMakerController.deleteCard';
 import deleteCardSet from '@salesforce/apex/cardMakerController.deleteCardSet';
 export default class CardMaker extends LightningElement {
     trainName = '';
+
+    @api label = '';
 
     @track isAddEnabled = true;
 
