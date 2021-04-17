@@ -33,6 +33,14 @@ public without sharing class testMakerController {
         for (ClassSubject__c variable : classSub) {
             subId.add(variable.Subject__c);
         }
+        String usrId = UserInfo.getUserId();     
+        Teacher__c teaher = [SELECT Id, School__c FROM Teacher__c WHERE User__c = :usrId];
+        String teacherId = teaher.Id;
+        List<TeachersSubject__c> teachSb = [SELECT Id, Subject__c FROM TeachersSubject__c WHERE (Teacher__c = :teacherId AND Subject__c IN :subId)];
+        subId.clear();
+        for (TeachersSubject__c variable : teachSb) {
+            subId.add(variable.Subject__c);
+        }
         List<Subject__c> sub = [SELECT Id, Name FROM Subject__c WHERE Id IN :subId];
         return sub;
     }

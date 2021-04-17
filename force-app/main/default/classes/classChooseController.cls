@@ -24,7 +24,7 @@ public without sharing class classChooseController {
         String usrId = UserInfo.getUserId();     
         Teacher__c teaher = [SELECT Id, School__c FROM Teacher__c WHERE User__c = :usrId];
         String teacherId = teaher.Id;
-        List<TeachersSubject__c> teachSub = [SELECT Id, Subject__c FROM TeachersSubject__c];
+        List<TeachersSubject__c> teachSub = [SELECT Id, Subject__c FROM TeachersSubject__c WHERE Teacher__c = :teacherId];
         Set<Id> subjects = new Set<Id>();
         for (TeachersSubject__c variable : teachSub) {
             subjects.add(variable.Subject__c);
