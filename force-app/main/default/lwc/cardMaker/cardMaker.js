@@ -45,21 +45,19 @@ export default class CardMaker extends LightningElement {
     }
 
     
-    async addNewCard(event){
-        let inputs = this.template.querySelectorAll("lightning-input-field");
-        
-        if(inputs[0].value != '' && inputs[1].value){
-            let form = this.template.querySelector("lightning-record-edit-form");
-            let cards = form.querySelectorAll("lightning-input-field");
-            cards[cards.length - 1].value = this.setsValue;
-            form.submit();
-            cards[0].value = '';
-            cards[1].value = '';
-            if(this.template.querySelector(".setsCombo").value == ''){
-                this.isAddEnabled = true;
-            }
-            await this.updateSets(); 
+    async addNewCardFunc(event){
+        let form = this.template.querySelector("lightning-record-edit-form");
+        let cards = form.querySelectorAll("lightning-input-field");
+        cards[cards.length - 1].value = this.setsValue;
+        console.log(this.setsValue);
+        form.submit();
+        console.log("Submited");
+        cards[0].value = '';
+        cards[1].value = '';
+        if(this.template.querySelector(".setsCombo").value == ''){
+            this.isAddEnabled = true;
         }
+        await this.updateSets(); 
     }
 
     async createCardSet(event){

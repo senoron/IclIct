@@ -53,7 +53,7 @@ export default class ClassChoose extends LightningElement {
     }
 
     async addSubject(event){
-        let combos = this.querySelectorAll("lightning-combobox");
+        let combos = this.template.querySelectorAll("lightning-combobox");
         if(combos[0].value != '' && combos[1].value != ''){
             await addTeacherSubject({subId: this.currentSubject});
             this.subjects = [];
