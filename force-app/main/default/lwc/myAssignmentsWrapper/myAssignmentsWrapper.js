@@ -80,14 +80,17 @@ export default class MyAssignmentsWrapper extends LightningElement {
     handleNavigateToTest(event) {
         const testId = event.currentTarget.value;
 
-        open('/s/test?pageId=' + testId, '_blank');
+        open('/s/test?testId=' + testId, '_blank');
     }
 
     async openFile(event) {
         const contentDocumentId = event.currentTarget.value;
-        const url = await getFileUrl({
-            documentId: contentDocumentId
-        });
+
+        const url = '/s/homework?documentId=' + contentDocumentId;
+
+        // const url = await getFileUrl({
+        //     documentId: contentDocumentId
+        // });
         open(url, '_blank');
     }
 }

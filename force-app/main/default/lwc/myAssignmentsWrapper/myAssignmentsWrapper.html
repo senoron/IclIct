@@ -21,8 +21,8 @@
                                             <template if:false={homework.IsControlWork__c}>
                                                 <div class="slds-grid slds-grid_vertical" key={homework.Id}>
                                                     <template for:each={homework.files} for:item="file">
-                                                        <div class="slds-col slds-m-left_medium" key={file}>
-                                                            <button class="slds-button slds-button_neutral" value={file} onclick={openFile}>{file}</button>
+                                                        <div class="slds-col slds-m-left_medium" key={file.Id}>
+                                                            <button class="slds-button slds-button_neutral" value={file.Id} onclick={openFile}>{file.Title}</button>
                                                         </div>
                                                     </template>
                                                 </div>

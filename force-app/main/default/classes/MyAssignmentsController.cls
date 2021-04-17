@@ -45,10 +45,10 @@ public without sharing class MyAssignmentsController {
                 }
             }
 
-            List<ContentDocumentLink> links = [SELECT LinkedEntityId, ContentDocumentId FROM ContentDocumentLink WHERE LinkedEntityId IN: homeworksId];
+            List<ContentDocumentLink> links = [SELECT LinkedEntityId, ContentDocumentId, ContentDocument.Title FROM ContentDocumentLink WHERE LinkedEntityId IN: homeworksId];
             List<Test__c> tests = [SELECT Id, Name, Homework__c FROM Test__c WHERE Homework__c IN: homeworksId];
             Map<String, List<Test__c>> testsByHomeworkId = new Map<String, List<Test__c>>();
-            Map<String, List<String>> documentIdByHomeworkId = new Map<String, List<String>>();
+            Map<String, List<ContentDocument>> documentByHomeworkId = new Map<String, List<ContentDocument>>();
 
             for (Test__c test : tests) {
 
@@ -60,11 +60,11 @@ public without sharing class MyAssignmentsController {
             }
 
             for (ContentDocumentLink link : links) {
-                if (!documentIdByHomeworkId.containsKey(link.LinkedEntityId)) {
-                    documentIdByHomeworkId.put(link.LinkedEntityId, new List<String>());
+                if (!documentByHomeworkId.containsKey(link.LinkedEntityId)) {
+                    documentByHomeworkId.put(link.LinkedEntityId, new List<ContentDocument>());
                 }
 
-                documentIdByHomeworkId.get(link.LinkedEntityId).add(link.ContentDocumentId);
+                documentByHomeworkId.get(link.LinkedEntityId).add(new ContentDocument(Id = link.ContentDocumentId, Title = link.ContentDocument.Title));
             }
             
             Map<String, Object> finalResultMap = new Map<String, Object>();
@@ -82,7 +82,7 @@ public without sharing class MyAssignmentsController {
 
             finalResultMap.put('data', resultMap);
             finalResultMap.put('tests', testsByHomeworkId);
-            finalResultMap.put('files', documentIdByHomeworkId);
+            finalResultMap.put('files', documentByHomeworkId);
 
             return finalResultMap;
        
@@ -90,7 +90,7 @@ public without sharing class MyAssignmentsController {
 
     @AuraEnabled
     public static String getFileUrl(String documentId){
-        ContentDistribution ds = [SELECT Id, DistributionPublicUrl FROM ContentDistribution WHERE ContentDocumentId = :documentId];
+        ContentDistribution ds = [SELECT Id, DistributionPublicUrl FROM ContentDistribution WHERE ContentDocumentId = :documentId LIMIT 1];
         return ds.DistributionPublicUrl;
     }
 }

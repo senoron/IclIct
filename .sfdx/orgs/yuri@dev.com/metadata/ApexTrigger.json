@@ -1,0 +1,31 @@
+{
+  "status": 0,
+  "result": [
+    {
+      "createdById": "00509000005eVMHAA2",
+      "createdByName": "Svyat Senoron",
+      "createdDate": "2021-04-16T18:08:06.000Z",
+      "fileName": "triggers/uploadFileTrigger.trigger",
+      "fullName": "uploadFileTrigger",
+      "id": "01q090000011EfUAAU",
+      "lastModifiedById": "00509000005eVMHAA2",
+      "lastModifiedByName": "Svyat Senoron",
+      "lastModifiedDate": "2021-04-16T18:08:06.000Z",
+      "manageableState": "unmanaged",
+      "type": "ApexTrigger"
+    },
+    {
+      "createdById": "00509000005eVMHAA2",
+      "createdByName": "Svyat Senoron",
+      "createdDate": "2021-04-16T18:08:01.000Z",
+      "fileName": "triggers/ContentDocumentLinkTrigger.trigger",
+      "fullName": "ContentDocumentLinkTrigger",
+      "id": "01q090000011EfPAAU",
+      "lastModifiedById": "00509000005eVMHAA2",
+      "lastModifiedByName": "Svyat Senoron",
+      "lastModifiedDate": "2021-04-16T18:08:01.000Z",
+      "manageableState": "unmanaged",
+      "type": "ApexTrigger"
+    }
+  ]
+}

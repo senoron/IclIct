@@ -1,0 +1,38 @@
+<template>
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col slds-size_2-of-3">
+            
+            <lightning-file-upload onuploadfinished={handleUpload} data-id="upload" label="Upload file with homework" required disabled></lightning-file-upload>
+
+        </div>
+        <div class="slds-col slds-size_1-of-3">
+            <div class="slds-box">
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-combobox name="classes" class="classesCombo" label="Choose a class" value={classValue}
+                            placeholder="Select Class" onchange={classChange} required>
+                        </lightning-combobox>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-combobox name="subjects" class="subjectsCombo" label="Choose a subject" value={subjectValue}
+                            placeholder="Select Subject" onchange={subjectChange} disabled={subjectDisabled} required>
+                        </lightning-combobox>
+                    </div>
+                </div>
+                <lightning-combobox name="topics" class="topicsCombo" label="Choose a topic" value={topicValue}
+                    placeholder="Select Topic" onchange={topicChange} disabled={topicDisabled} required>
+                </lightning-combobox>
+                <div class="slds-grid slds-grid_vertical">
+                    <div class="slds-col">
+                        <lightning-input required class="startDate" type="datetime" name="startInput"
+                            label="Enter start time/date" onchange={updateDate}></lightning-input>
+                    </div>
+                    <div class="slds-col">
+                        <lightning-input required class="endDate" type="datetime" name="endInput"
+                            label="Enter end time/date" onchange={updateDate}></lightning-input>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
