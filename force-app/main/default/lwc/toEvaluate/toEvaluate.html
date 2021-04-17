@@ -1,0 +1,46 @@
+<template>
+    <div class="slds-grid slds-gutters slds-m-top_medium">
+        <div class="slds-col slds-size_2-of-3">
+            <div class="slds-box slds-grid slds-grid_vertical">
+                <template for:each={stdHomeworks} for:item="stdHomework">
+                    <div key={stdHomework.Id} class="slds-m-vertical_x-small slds-border_bottom slds-p-bottom_xx-small">
+                        <div class="slds-grid">
+                            <div class="slds-col slds-m-top_large">
+                                <template for:each={stdHomework.ContentDocumentLinks} for:item="link">
+                                    <lightning-button key={link.ContentDocumentId} value={link.ContentDocumentId}
+                                        label="Open file" onclick={openFile}></lightning-button>
+                                </template>
+                            </div>
+                            <div class="slds-col">
+                                <lightning-input class="slds-m-vertical_xx-small" type="text" data-id={stdHomework.Id}
+                                    label="Mark"></lightning-input>
+                            </div>
+                        </div>
+                        <lightning-button class="slds-m-bottom_xx-small slds-m-right_small" style="float: right;" value={stdHomework.Id} label="Submit"
+                            variant="neutral" onclick={handleMark}></lightning-button>
+                    </div>
+                </template>
+            </div>
+        </div>
+        <div class="slds-col slds-size_1-of-3">
+            <div class="slds-box">
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-combobox name="classes" class="classesCombo" label="Choose a class"
+                            value={classValue} placeholder="Select Class" onchange={classChange} required>
+                        </lightning-combobox>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-combobox name="subjects" class="subjectsCombo" label="Choose a subject"
+                            value={subjectValue} placeholder="Select Subject" onchange={subjectChange}
+                            disabled={subjectDisabled} required>
+                        </lightning-combobox>
+                    </div>
+                </div>
+                <lightning-combobox name="topics" class="topicsCombo" label="Choose a topic" value={topicValue}
+                    placeholder="Select Topic" onchange={topicChange} disabled={topicDisabled} required>
+                </lightning-combobox>
+            </div>
+        </div>
+    </div>
+</template>
